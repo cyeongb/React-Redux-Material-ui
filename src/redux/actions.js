@@ -2,11 +2,12 @@ import * as types from "./actionType";
 import axios from "axios";
 
 const getUsers = (users) => ({
-  types: types.GET_USERS,
+  type: types.GET_USERS,
   payload: users,
 });
 
 export const loadUsers = () => {
+  console.log("loadUsers()");
   return function (dispatch) {
     axios
       .get(`${process.env.REACT_APP_API}`)

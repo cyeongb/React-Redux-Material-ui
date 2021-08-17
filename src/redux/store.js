@@ -6,6 +6,7 @@ import rootReducer from "./root-reducer";
 const middlewares = [reduxThunk];
 
 if (process.env.NODE_ENV === "development") {
+  //console.log("process.env.NODE_ENV ::", process.env.NODE_ENV);  //development
   middlewares.push(logger);
 }
 

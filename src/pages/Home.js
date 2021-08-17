@@ -48,7 +48,7 @@ const Home = () => {
 
   useEffect(() => {
     console.log("useEffect()");
-    dispatch(loadUsers);
+    dispatch(loadUsers());
   }, []);
 
   return (
