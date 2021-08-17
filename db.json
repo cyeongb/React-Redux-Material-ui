@@ -1,0 +1,39 @@
+{
+  "user": [
+    {
+      "name": "harry potter",
+      "address": "gangnam-gu gangnam-ro 12-22",
+      "email": "axio@hogwart.com",
+      "contact": "021233455",
+      "id": 1
+    },
+    {
+      "name": "frodo baggins",
+      "address": "hobitton shire 333-4",
+      "email": "ring@hobit.com",
+      "contact": "4039829348",
+      "id": 2
+    },
+    {
+      "name": "elsa",
+      "address": "ice- kingdom north-mountain 23",
+      "email": "queenElsa@letitgo.com",
+      "contact": "000382334",
+      "id": 3
+    },
+    {
+      "name": "anne sherly cusbert",
+      "address": "north canada greengables 12-9",
+      "email": "annwithe@red.com",
+      "contact": "345533455",
+      "id": 4
+    },
+    {
+      "name": "cruella",
+      "address": "england in front of fountain",
+      "email": "estella@fashion.com",
+      "contact": "234326764",
+      "id": 5
+    }
+  ]
+}
