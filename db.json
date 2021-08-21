@@ -34,6 +34,13 @@
       "email": "estella@fashion.com",
       "contact": "234326764",
       "id": 5
+    },
+    {
+      "name": "name1",
+      "address": "somewhere",
+      "email": "name1@gmail.com",
+      "contact": "00000000",
+      "id": 6
     }
   ]
 }
