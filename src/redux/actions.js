@@ -16,6 +16,19 @@ const userDeleted = () => ({
   type: types.DELETE_USER,
 });
 
+const userAdded = () => ({
+  type: types.ADD_USER,
+});
+
+const getUser = (user) => ({
+  type: types.GET_SINGLE_USER,
+  payload: user,
+});
+
+const userUpdated = () => ({
+  type: types.UPDATE_USER,
+});
+
 export const loadUsers = () => {
   console.log("loadUsers()");
   return function (dispatch) {
@@ -30,14 +43,54 @@ export const loadUsers = () => {
 };
 
 export const deleteUser = (id) => {
-  console.log("deleteUsers() id:", id);
+  console.log("deleteUser() id:", id);
   return function (dispatch) {
     axios
       .delete(`${process.env.REACT_APP_API}/${id}`)
       .then((res) => {
         console.log("response ::", res);
-        dispatch(userDeleted(res.data));
+        dispatch(userDeleted());
         dispatch(loadUsers());
+      })
+      .catch((err) => console.log("error : ", err));
+  };
+};
+
+export const addUser = (user) => {
+  console.log("addUser() user:", user);
+  return function (dispatch) {
+    axios
+      .post(`${process.env.REACT_APP_API}`, user)
+      .then((res) => {
+        console.log("response ::", res);
+        dispatch(userAdded());
+        dispatch(loadUsers());
+      })
+      .catch((err) => console.log("error : ", err));
+  };
+};
+
+export const getSingleUser = (id) => {
+  console.log("getSingleUser() id:", id);
+  return function (dispatch) {
+    axios
+      .get(`${process.env.REACT_APP_API}/${id}`)
+      .then((res) => {
+        console.log("response ::", res);
+        dispatch(getUser(res.data));
+      })
+      .catch((err) => console.log("error : ", err));
+  };
+};
+
+export const updateUser = (user, id) => {
+  console.log("addUser() user:", user);
+  return function (dispatch) {
+    axios
+      .put(`${process.env.REACT_APP_API}/${id}`, user)
+      .then((res) => {
+        console.log("response ::", res);
+        dispatch(userUpdated());
       })
       .catch((err) => console.log("error : ", err));
   };

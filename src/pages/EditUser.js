@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addUser } from "../redux/actions";
+import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleUser, updateUser } from "../redux/actions";
 
 const useStyles = makeStyles({
   gobackButton: {
     marginTop: "2rem",
   },
-  formRoot: {
+  editRoot: {
     marginTop: "7rem",
   },
   userForm: {
@@ -23,7 +23,9 @@ const useStyles = makeStyles({
     },
   },
 });
-const AddUser = () => {
+const EditUser = () => {
+  console.log("EditUser()");
+
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -37,7 +39,20 @@ const AddUser = () => {
     address: "",
   });
 
+  const { id } = useParams(); //id라는 파라미터를 사용할때
+  const { user } = useSelector((state) => state.data); //root-reducer에서 가져온 data
+
   const { name, email, contact, address } = userData;
+
+  useEffect(() => {
+    dispatch(getSingleUser(id));
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setUserData({ ...user });
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,19 +61,19 @@ const AddUser = () => {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    //  e.preventDefault();
 
     if (!name || !address || !email || !contact) {
       setError("please input all field");
     } else {
-      dispatch(addUser(userData));
+      dispatch(updateUser(userData, userData.id));
       history.push("/");
       setError("");
     }
   };
 
   return (
-    <div className={classes.formRoot}>
+    <div className={classes.editRoot}>
       <Button
         variant="contained"
         color="secondary"
@@ -67,7 +82,7 @@ const AddUser = () => {
       >
         Go Back
       </Button>
-      <h2>Add User</h2>
+      <h2>Edit User</h2>
       {error.length > 0 && <h3 style={{ color: "gray" }}>error: {error}</h3>}
       <form
         autoComplete="off"
@@ -80,7 +95,7 @@ const AddUser = () => {
           label="NAME"
           type="text"
           variant="standard"
-          value={name}
+          value={name || ""}
           name="name"
           margin="normal"
           onChange={handleInputChange}
@@ -91,7 +106,7 @@ const AddUser = () => {
           type="email"
           name="email"
           variant="standard"
-          value={email}
+          value={email || ""}
           margin="normal"
           onChange={handleInputChange}
         />
@@ -100,7 +115,7 @@ const AddUser = () => {
           label="CONTACT"
           type="number"
           variant="standard"
-          value={contact}
+          value={contact || ""}
           name="contact"
           margin="normal"
           onChange={handleInputChange}
@@ -110,7 +125,7 @@ const AddUser = () => {
           label="ADDRESS"
           type="text"
           variant="standard"
-          value={address}
+          value={address || ""}
           name="address"
           margin="normal"
           onChange={handleInputChange}
@@ -121,11 +136,11 @@ const AddUser = () => {
           type="submit"
           className={classes.submitButton}
         >
-          Submit
+          Save
         </Button>
       </form>
     </div>
   );
 };
 
-export default AddUser;
+export default EditUser;

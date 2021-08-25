@@ -41,6 +41,20 @@
       "email": "name1@gmail.com",
       "contact": "00000000",
       "id": 6
+    },
+    {
+      "name": "gambi",
+      "email": "gambi@gmail.com",
+      "contact": "010000000",
+      "address": "평거동 감비집",
+      "id": 7
+    },
+    {
+      "name": "gfggg",
+      "email": "ggggg",
+      "contact": "4444",
+      "address": "3333",
+      "id": 8
     }
   ]
 }

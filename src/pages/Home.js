@@ -47,6 +47,9 @@ const useStyles = makeStyles({
   editButton: {
     borderRadius: "30px !important",
   },
+  addButton: {
+    marginTop: "2rem",
+  },
 });
 
 const Home = () => {
@@ -121,6 +124,7 @@ const Home = () => {
                         variant="contained"
                         color="primary"
                         className={classes.editButton}
+                        onClick={() => history.push(`/editUser/${user.id}`)}
                       >
                         Edit
                       </Button>
