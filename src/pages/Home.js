@@ -48,7 +48,10 @@ const useStyles = makeStyles({
     borderRadius: "30px !important",
   },
   addButton: {
-    marginTop: "2rem",
+    margin: "2rem 1rem 0 0",
+  },
+  tableButton: {
+    margin: "2rem 0 0 1rem",
   },
 });
 
@@ -83,6 +86,14 @@ const Home = () => {
           onClick={() => history.push("/addUser")}
         >
           Add User
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.tableButton}
+          onClick={() => history.push("/table")}
+        >
+          Go Table
         </Button>
       </div>
       <TableContainer component={Paper}>
